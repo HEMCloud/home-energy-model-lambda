@@ -1,7 +1,8 @@
-# import json
+import json
 import os
 import subprocess
 import sys
+
 # import requests
 
 # Add the submodule path to sys.path
@@ -52,14 +53,20 @@ def lambda_handler(event, context):
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
 
-    subprocess.run([
-        "python",
-        hem_main_script_path,
-        hem_submodule_path + "/test/demo_files/core/demo.json",
-        "--display-progress",
-        "--epw-file",
-        file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw"
-    ])
+    result = subprocess.run(
+        [
+            "python",
+            hem_main_script_path,
+            hem_submodule_path + "/test/demo_files/core/demo.json",
+            "--display-progress",
+            "--epw-file",
+            file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw",
+        ],
+    )
+    if result.returncode == 0:
+        return {"statusCode": 200}
+    else:
+        return {"statusCode": 500}
 
 
 if __name__ == "__main__":
