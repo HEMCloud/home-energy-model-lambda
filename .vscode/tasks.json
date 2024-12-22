@@ -2,27 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Invoke HelloWorldFunction directly",
-            "type": "shell",
-            "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
-        },
-        {
-            "label": "Sandbox SSO login",
+            "label": "1. Sandbox SSO login",
             "type": "shell",
             "command": "aws sso login --profile sandbox-ajgreen",
         },
         {
-            "label": "Build HelloWorldFunction",
+            "label": "2. Build HelloWorldFunction",
             "type": "shell",
             "command": "sam build --use-container",
         },
         {
-            "label": "Run Lambda local endpoint",
+            "label": "3. Run Lambda local endpoint",
             "type": "shell",
             "command": "sam local start-lambda --profile sandbox-ajgreen",
         },
         {
-            "label": "Invoke Lambda local endpoint",
+            "label": "4. Invoke Lambda local endpoint",
             "type": "shell",
             "command": [
                 "aws",
@@ -40,6 +35,11 @@
                 "raw-in-base64-out",
                 "/dev/stdout"
             ],
+        },
+        {
+            "label": "Invoke HelloWorldFunction directly",
+            "type": "shell",
+            "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
         },
     ]
 }
