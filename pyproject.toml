@@ -1,0 +1,28 @@
+[project]
+name = "home-energy-model-lambda"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Ashley Green", email = "technimakri@gmail.com"},
+]
+dependencies = [
+    "requests",
+    "Cython==3.0.6",
+    "numpy==1.26.2",
+    "scipy==1.11.4",
+    "pandas==2.2.1",
+    "jupyterlab==4.0.12",
+    "matplotlib==3.9.1",
+    "pytest",
+]
+requires-python = "==3.9.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
