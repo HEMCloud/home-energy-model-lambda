@@ -1,0 +1,48 @@
+{
+        "window":{
+            "g_value":0.73,
+            "r_c": 0.547
+            },
+        "wall":{
+            "a_sol": 0.6,
+            "r_c": 5.56,
+            "k_m":114450,
+            "mass_distribution_class": "IE"
+            },
+        "party_wall":{
+            "r_c": 5.56,
+            "k_m":114450,
+            "mass_distribution_class": "D"
+            },
+        "door":{
+            "a_sol": 0.65,
+            "r_c": 0.43,
+            "k_m":39000,
+            "mass_distribution_class": "D"
+            },
+        "ground":{
+            "psi_wall_floor_junc":0.16,
+            "k_m": 282355,
+            "r_f": 6.12,
+            "mass_distribution_class": "E",
+            "u_value":0.13,
+            "floor_type": "Slab_no_edge_insulation"
+            },
+        "roof":{
+            "a_sol":0.60,
+            "r_c": 9.091,
+            "k_m":8750,
+            "mass_distribution_class": "D",
+            "is_unheated_pitched_roof": true
+            },
+        "ThermalBridging": {
+                    "TB_linear": {
+                        "type": "ThermalBridgeLinear",
+                        "linear_thermal_transmittance": 0.05
+                    },
+                    "TB_point": {
+                        "type": "ThermalBridgePoint",
+                        "heat_transfer_coeff": 2.0
+                }
+        }
+    }
