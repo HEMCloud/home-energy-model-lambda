@@ -59,14 +59,15 @@ def lambda_handler(event, context):
             hem_main_script_path,
             hem_submodule_path + "/test/demo_files/core/demo.json",
             "--display-progress",
-            "--epw-file",
+            # "--epw-file",
             file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw",
         ],
+        capture_output=True,
     )
     if result.returncode == 0:
         return {"statusCode": 200}
     else:
-        return {"statusCode": 500}
+        return {"statusCode": 500, "error": result.stderr.decode('utf-8')}
 
 
 if __name__ == "__main__":
