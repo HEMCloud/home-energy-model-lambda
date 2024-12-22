@@ -1,5 +1,7 @@
 import os
 import subprocess
+import sys
+
 # import sys
 
 # Add the submodule path to sys.path
@@ -10,30 +12,20 @@ import subprocess
 
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
-
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
     file_dir = os.path.dirname(__file__)
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
+
+
+    env = os.environ.copy()
+    env['PYTHONPATH'] = '/opt/python/lib/python3.9/site-packages'
+    # env["LD_LIBRARY_PATH"] = "/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/lib"
+    env["PYTHONPATH"] = "/var/task"
+    print(sys.executable)
+    print(os.environ)
+    print(os.path.dirname(__file__))
+    print(os.listdir(os.path.dirname(__file__)))
+
 
     result = subprocess.run(
         [
@@ -45,11 +37,13 @@ def lambda_handler(event, context):
             file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw",
         ],
         capture_output=True,
+        env=env,
     )
+
     if result.returncode == 0:
         return {"statusCode": 200}
     else:
-        return {"statusCode": 500, "error": result.stderr.decode('utf-8')}
+        return {"statusCode": 500, "error": result.stderr.decode("utf-8")}
 
 
 if __name__ == "__main__":
