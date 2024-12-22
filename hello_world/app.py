@@ -1,5 +1,13 @@
 import json
+import os
+import sys
 import requests
+
+# Add the submodule path to sys.path
+submodule_path = os.path.join(os.path.dirname(__file__), "hem", "src")
+sys.path.append(submodule_path)
+
+from hem import CsvWriter
 
 
 def lambda_handler(event, context):
@@ -34,8 +42,7 @@ def lambda_handler(event, context):
 
     return {
         "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            "location": ip.text.replace("\n", "")
-        }),
+        "body": json.dumps(
+            {"message": "hello world", "location": ip.text.replace("\n", ""), "test_hem": str(CsvWriter)}
+        ),
     }
