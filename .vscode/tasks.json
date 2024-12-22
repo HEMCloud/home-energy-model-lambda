@@ -6,20 +6,17 @@
             "type": "shell",
             "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
             "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+        },
+        {
+            "label": "Sandbox SSO login",
+            "type": "shell",
+            "command": "aws sso login --profile sandbox-ajgreen",
         },
         {
             "label": "Build HelloWorldFunction",
             "type": "shell",
             "command": "sam build --use-container",
             "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         }
     ]
 }
