@@ -2,10 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Invoke HelloWorldFunction",
+            "label": "Invoke HelloWorldFunction directly",
             "type": "shell",
             "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
-            "problemMatcher": [],
         },
         {
             "label": "Sandbox SSO login",
@@ -16,7 +15,31 @@
             "label": "Build HelloWorldFunction",
             "type": "shell",
             "command": "sam build --use-container",
-            "problemMatcher": [],
-        }
+        },
+        {
+            "label": "Run Lambda local endpoint",
+            "type": "shell",
+            "command": "sam local start-lambda --profile sandbox-ajgreen",
+        },
+        {
+            "label": "Invoke Lambda local endpoint",
+            "type": "shell",
+            "command": [
+                "aws",
+                "lambda",
+                "invoke",
+                "--function-name",
+                "HelloWorldFunction",
+                "--endpoint-url",
+                "http://127.0.0.1:3001",
+                "--no-verify-ssl",
+                "--profile",
+                "sandbox-ajgreen",
+                "--no-cli-pager",
+                "--cli-binary-format",
+                "raw-in-base64-out",
+                "/dev/stdout"
+            ],
+        },
     ]
 }
