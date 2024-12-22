@@ -16,17 +16,9 @@ def lambda_handler(event, context):
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
 
-
     env = os.environ.copy()
-    env['PYTHONPATH'] = '/opt/python/lib/python3.9/site-packages'
-    # env["LD_LIBRARY_PATH"] = "/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/lib"
+    env["PYTHONPATH"] = "/opt/python/lib/python3.9/site-packages"
     env["PYTHONPATH"] = "/var/task"
-    print(sys.executable)
-    print(os.environ)
-    print(os.path.dirname(__file__))
-    print(os.listdir(os.path.dirname(__file__)))
-
-
     result = subprocess.run(
         [
             "python",
