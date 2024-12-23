@@ -1,3 +1,13 @@
+# My notes
+Debug config based on: 
+- https://medium.com/@Consegna/aws-sam-local-debugging-lambda-and-api-gateway-with-breakpoints-demo-d5fea4172376
+- https://github.com/microsoft/debugpy
+
+
+
+
+
+
 # Hello World AWS Lambda and Amazon API Gateway REST API (Python)
 
 This project contains source code and supporting files for a serverless application that you can deploy with the AWS SAM CLI. It includes the following files and folders.

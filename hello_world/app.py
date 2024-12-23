@@ -11,6 +11,11 @@ import sys
 
 # from hem import CsvWriter
 
+import debugpy
+
+debugpy.listen(("0.0.0.0", 3488))
+debugpy.wait_for_client()
+
 
 def lambda_handler(event, context):
     file_dir = os.path.dirname(__file__)

@@ -14,7 +14,21 @@
         {
             "label": "3. Run Lambda local endpoint",
             "type": "shell",
-            "command": "sam local start-lambda --profile sandbox-ajgreen",
+            "command": [
+                "sam",
+                "local",
+                "start-lambda",
+                "--profile",
+                "sandbox-ajgreen",
+                "--debug-port",
+                // Must be the same as the port in the .vscode/launch.json debug configuration
+                "3488",
+                "--warm-containers",
+                "EAGER",
+                "--debug",
+                "--debug-function",
+                "HelloWorldFunction",
+            ],
         },
         {
             "label": "4. Invoke Lambda local endpoint",
