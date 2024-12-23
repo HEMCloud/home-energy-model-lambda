@@ -12,12 +12,11 @@ import sys
 # from hem import CsvWriter
 
 import debugpy
-
 debugpy.listen(("0.0.0.0", 3488))
-debugpy.wait_for_client()
 
 
 def lambda_handler(event, context):
+    debugpy.wait_for_client()
     file_dir = os.path.dirname(__file__)
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")

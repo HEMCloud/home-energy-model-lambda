@@ -9,7 +9,7 @@
         {
             "label": "2. Build HelloWorldFunction",
             "type": "shell",
-            "command": "sam build --use-container",
+            "command": "sam build --use-container --cached",
         },
         {
             "label": "3. Run Lambda local endpoint",
