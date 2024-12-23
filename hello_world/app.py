@@ -1,7 +1,6 @@
 import os
-import shutil
 import subprocess
-import sys
+import json
 
 # import sys
 
@@ -20,7 +19,6 @@ def lambda_handler(event, context):
     file_dir = os.path.dirname(__file__)
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
-    source_file_path = os.path.join(hem_submodule_path, "test/demo_files/core/demo.json")
     temp_dir_path = "/tmp/hem-inputs"
     os.makedirs(temp_dir_path, exist_ok=True)
 
@@ -30,7 +28,8 @@ def lambda_handler(event, context):
     read-only in AWS Lambda. /tmp is the only writable directory in AWS Lambda.
     """
     temp_file_path = os.path.join(temp_dir_path, "demo.json")
-    shutil.copy(source_file_path, temp_file_path)
+    with open(temp_file_path, "w") as f:
+        json.dump(event, f)
 
     """
     When running a subprocess in AWS Lambda, the PYTHONPATH environment variable
