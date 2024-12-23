@@ -1,11 +1,13 @@
 import csv
 import json
 
-csv_file_path = "/Users/ashley.green/Personal/home-energy-model-lambda/demo__results/demo__core__results_summary.csv"
-json_file_path = "/Users/ashley.green/Personal/home-energy-model-lambda/demo__results/output.json"
+example_csv_file_path = (
+    "/Users/ashley.green/Personal/home-energy-model-lambda/demo__results/demo__core__results_summary.csv"
+)
+example_json_file_path = "/Users/ashley.green/Personal/home-energy-model-lambda/demo__results/output.json"
 
 
-def csv_to_json(csv_file_path, json_file_path):
+def csv_to_json(csv_file_path) -> dict:
     data = {
         "Energy Demand Summary": {},
         "Peak Energy Use": {},
@@ -71,8 +73,11 @@ def csv_to_json(csv_file_path, json_file_path):
             elif section == "Space heating system":
                 data[section]["main"] = {"Overall CoP": float(row[1])}
 
-    with open(json_file_path, mode="w") as json_file:
-        json.dump(data, json_file, indent=2)
+    return data
 
 
-csv_to_json(csv_file_path, json_file_path)
+if __name__ == "__main__":
+    json_data = csv_to_json(example_csv_file_path)
+
+    with open(example_json_file_path, mode="w") as json_file:
+        json.dump(json_data, json_file, indent=2)
