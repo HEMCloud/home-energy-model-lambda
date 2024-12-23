@@ -63,7 +63,7 @@ def lambda_handler(event, context):
     result_data = csv_to_json(summary_csv_filepath)
 
     if result.returncode == 0:
-        return {"statusCode": 200, "body": json.dumps(result_data), "headers": {"Content-Type": "application/json"}}
+        return {"statusCode": 200, "body": result_data, "headers": {"Content-Type": "application/json"}}
     else:
         return {"statusCode": 500, "error": result.stderr.decode("utf-8")}
 
