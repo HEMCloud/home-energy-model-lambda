@@ -11,6 +11,9 @@ import json
 # from hem import CsvWriter
 
 import debugpy
+
+from convert_summary_csv_to_json import csv_to_json
+
 debugpy.listen(("0.0.0.0", 3488))
 
 
@@ -27,8 +30,9 @@ def lambda_handler(event, context):
     outputs CSV results to the same directory as the input file, which is
     read-only in AWS Lambda. /tmp is the only writable directory in AWS Lambda.
     """
-    temp_file_path = os.path.join(temp_dir_path, "demo.json")
-    with open(temp_file_path, "w") as f:
+    input_file_name = "demo"
+    input_file_path = os.path.join(temp_dir_path, input_file_name + ".json")
+    with open(input_file_path, "w") as f:
         json.dump(event, f)
 
     """
@@ -42,7 +46,7 @@ def lambda_handler(event, context):
         [
             "python",
             hem_main_script_path,
-            temp_file_path,
+            input_file_path,
             "--display-progress",
             "--epw-file",
             file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw",
@@ -51,6 +55,13 @@ def lambda_handler(event, context):
         env=env,
     )
 
+    # This logic is copied from the HEM module: src.hem.py, line 74 - 95
+    results_folder = os.path.join(input_file_path + "__results", "")
+    output_file_name_stub = results_folder + input_file_name + "__" + "core" + "__"
+    summary_csv_filename = output_file_name_stub + "results_summary.csv"
+
+    csv_to_json(summary_csv_filename)
+
     if result.returncode == 0:
         return {"statusCode": 200}
     else:
@@ -58,4 +69,4 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    print(lambda_handler(None, None))
+    print(lambda_handler({"example": "event"}, None))
