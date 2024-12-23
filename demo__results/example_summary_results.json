@@ -1,0 +1,118 @@
+{
+  "Energy Demand Summary": {
+    "Space heat demand": {
+      "unit": "kWh/m2",
+      "value": 0.088349
+    },
+    "Space cool demand": {
+      "unit": "kWh/m2",
+      "value": 0
+    }
+  },
+  "Peak Energy Use": {
+    "Peak half-hour consumption (electricity) [kWh]": {
+      "value": 2.06516,
+      "timestep": 0,
+      "month": "JAN",
+      "day": 1,
+      "hour of day": 1.0
+    }
+  },
+  "Energy Supply Summary": {
+    "Consumption": {
+      "unit": "kWh",
+      "unmet_demand": 1.009949,
+      "mains elec": 12.359898
+    },
+    "Generation": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Generation to consumption (immediate excl. diverter)": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Generation to storage": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Generation to diverter": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Generation to grid (export)": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Storage to consumption": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Grid to storage": {
+      "unit": "kWh",
+      "unmet_demand": 0,
+      "mains elec": 0
+    },
+    "Grid to consumption (import)": {
+      "unit": "kWh",
+      "unmet_demand": 1.009949,
+      "mains elec": 12.359898
+    },
+    "Net import": {
+      "unit": "kWh",
+      "unmet_demand": 1.009949,
+      "mains elec": 12.359898
+    },
+    "Storage round-trip efficiency": {
+      "unit": "ratio",
+      "unmet_demand": "DIV/0",
+      "mains elec": "DIV/0"
+    }
+  },
+  "Delivered Energy Summary": {
+    "Delivered energy by end-use (below) and fuel (right) [kWh/m2]": {
+      "total": {
+        "total": 0.154499,
+        "mains elec": 0.154499
+      },
+      "IES": {
+        "total": 0.0225,
+        "mains elec": 0.0225
+      },
+      "cooking": {
+        "total": 0.04075,
+        "mains elec": 0.04075
+      },
+      "lighting": {
+        "total": 0.0029,
+        "mains elec": 0.0029
+      },
+      "immersion": {
+        "total": 0,
+        "mains elec": 0
+      },
+      "main": {
+        "total": 0.088349,
+        "mains elec": 0.088349
+      }
+    }
+  },
+  "Hot water system": {
+    "hw cylinder": {
+      "Overall CoP": "DIV/0",
+      "Daily HW demand ([kWh] 75th percentile)": 5.170626,
+      "HW cylinder volume (litres)": 80.0
+    }
+  },
+  "Space heating system": {
+    "main": {
+      "Overall CoP": 1.0
+    }
+  }
+}
