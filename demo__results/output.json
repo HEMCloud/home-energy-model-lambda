@@ -22,7 +22,7 @@
     "Consumption": {
       "unit": "kWh",
       "unmet_demand": 1.009949,
-      "mains elec": 1.009949
+      "mains elec": 12.359898
     },
     "Generation": {
       "unit": "kWh",
@@ -62,12 +62,12 @@
     "Grid to consumption (import)": {
       "unit": "kWh",
       "unmet_demand": 1.009949,
-      "mains elec": 1.009949
+      "mains elec": 12.359898
     },
     "Net import": {
       "unit": "kWh",
       "unmet_demand": 1.009949,
-      "mains elec": 1.009949
+      "mains elec": 12.359898
     },
     "Storage round-trip efficiency": {
       "unit": "ratio",

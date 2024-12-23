@@ -55,7 +55,7 @@ def csv_to_json(csv_file_path, json_file_path):
                     data[section][row[0]] = {
                         "unit": row[1],
                         "unmet_demand": None if row[2] == "DIV/0" else float(row[2]),
-                        "mains elec": None if row[2] == "DIV/0" else float(row[2]),
+                        "mains elec": None if row[3] == "DIV/0" else float(row[3]),
                     }
             elif section == "Delivered Energy Summary":
                 data[section]["Delivered energy by end-use (below) and fuel (right) [kWh/m2]"][row[0]] = {
