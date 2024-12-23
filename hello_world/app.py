@@ -18,7 +18,7 @@ debugpy.listen(("0.0.0.0", 3488))
 
 
 def lambda_handler(event, context):
-    debugpy.wait_for_client()
+    # debugpy.wait_for_client()
     file_dir = os.path.dirname(__file__)
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
@@ -56,17 +56,20 @@ def lambda_handler(event, context):
     )
 
     # This logic is copied from the HEM module: src.hem.py, line 74 - 95
-    results_folder = os.path.join(input_file_path + "__results", "")
-    output_file_name_stub = results_folder + input_file_name + "__" + "core" + "__"
-    summary_csv_filename = output_file_name_stub + "results_summary.csv"
+    results_folder_path = os.path.join(temp_dir_path, input_file_name + "__results", "")
+    output_file_name_stub_path = results_folder_path + input_file_name + "__" + "core" + "__"
+    summary_csv_filepath = output_file_name_stub_path + "results_summary.csv"
 
-    csv_to_json(summary_csv_filename)
+    result_data = csv_to_json(summary_csv_filepath)
 
     if result.returncode == 0:
-        return {"statusCode": 200}
+        return {"statusCode": 200, "body": json.dumps(result_data), "headers": {"Content-Type": "application/json"}}
     else:
         return {"statusCode": 500, "error": result.stderr.decode("utf-8")}
 
 
 if __name__ == "__main__":
-    print(lambda_handler({"example": "event"}, None))
+    file_dir = os.path.dirname(__file__)
+    hem_submodule_path = os.path.join(file_dir, "hem")
+    demo_event = json.load(open(hem_submodule_path + "/test/demo_files/core/demo.json"))
+    print(lambda_handler(demo_event, None))

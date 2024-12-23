@@ -66,7 +66,7 @@ def csv_to_json(csv_file_path) -> dict:
                 }
             elif section == "Hot water system":
                 data[section]["hw cylinder"] = {
-                    "Overall CoP": row[1],
+                    "Overall CoP": None if row[1] == "DIV/0" else float(row[1]),
                     "Daily HW demand ([kWh] 75th percentile)": float(row[2]),
                     "HW cylinder volume (litres)": float(row[3]),
                 }
