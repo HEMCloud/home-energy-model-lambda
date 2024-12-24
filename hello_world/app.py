@@ -18,7 +18,6 @@ debugpy.listen(("0.0.0.0", 3488))
 
 
 def lambda_handler(event, context):
-    # debugpy.wait_for_client()
     file_dir = os.path.dirname(__file__)
     hem_submodule_path = os.path.join(file_dir, "hem")
     hem_main_script_path = os.path.join(hem_submodule_path, "src", "hem.py")
