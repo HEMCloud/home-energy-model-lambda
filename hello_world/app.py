@@ -26,9 +26,9 @@ def lambda_handler(event, context):
     os.makedirs(temp_dir_path, exist_ok=True)
 
     """
-    We have to copy the input file to a temp directory because the HEM module
-    outputs CSV results to the same directory as the input file, which is
-    read-only in AWS Lambda. /tmp is the only writable directory in AWS Lambda.
+    We have to write the event to an input file in a temp directory because the HEM module outputs CSV results to the
+    same directory as the input file, which is read-only in AWS Lambda. /tmp is the only writable directory in AWS
+    Lambda.
     """
     input_file_name = "demo"
     input_file_path = os.path.join(temp_dir_path, input_file_name + ".json")
@@ -36,9 +36,8 @@ def lambda_handler(event, context):
         json.dump(event, f)
 
     """
-    When running a subprocess in AWS Lambda, the PYTHONPATH environment variable
-    needs to be set to include the directory where the Lambda script is located.
-    This is where AWS SAM stores all the dependencies.
+    When running a subprocess in AWS Lambda, the PYTHONPATH environment variable needs to be set to include the
+    directory where the Lambda script is located. This is where AWS SAM stores all the dependencies.
     """
     env = os.environ.copy()
     env["PYTHONPATH"] = "/var/task"
