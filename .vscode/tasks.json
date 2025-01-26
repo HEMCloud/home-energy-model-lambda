@@ -41,6 +41,8 @@
                 "HelloWorldFunction",
                 "--endpoint-url",
                 "http://127.0.0.1:3001",
+                "--payload",
+                "file://hello_world/hem/test/demo_files/core/demo.json",
                 "--no-verify-ssl",
                 "--profile",
                 "sandbox-ajgreen",
