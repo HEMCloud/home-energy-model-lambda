@@ -58,6 +58,11 @@
       "label": "Invoke HEMFunction directly",
       "type": "shell",
       "command": "sam local invoke HEMFunction --event events/event.json --profile sandbox-ajgreen"
+    },
+    {
+      "label": "Upload HEMFunction to S3",
+      "type": "shell",
+      "command": "sam package --s3-bucket hem-mgt-build-artifacts --s3-prefix hem-lambda-zips --profile sandbox-ajgreen"
     }
   ]
 }
