@@ -57,5 +57,10 @@
             "type": "shell",
             "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
         },
+        {
+            "label": "Sam build using terraform",
+            "type": "shell",
+            "command": "sam build --hook-name terraform --build-dir .aws-sam-terraform",
+        }
     ]
 }
