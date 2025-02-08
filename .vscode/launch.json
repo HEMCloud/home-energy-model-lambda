@@ -1,22 +1,22 @@
 {
-    "version": "0.2.0",
-    "configurations": [
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to SAM CLI",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 3488
+      },
+      "pathMappings": [
         {
-            "name": "Attach to SAM CLI",
-            "type": "debugpy",
-            "request": "attach",
-            "connect": {
-                "host": "localhost",
-                "port": 3488
-            },
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceRoot}/hello_world",
-                    "remoteRoot": "/var/task"
-                }
-            ],
-            "subProcess": true,
-            "justMyCode": false,
+          "localRoot": "${workspaceRoot}/lambda_function",
+          "remoteRoot": "/var/task"
         }
-    ]
+      ],
+      "subProcess": true,
+      "justMyCode": false
+    }
+  ]
 }

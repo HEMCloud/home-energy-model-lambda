@@ -1,61 +1,61 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "1. Sandbox SSO login",
-            "type": "shell",
-            "command": "aws sso login --profile sandbox-ajgreen",
-        },
-        {
-            "label": "2. Build HelloWorldFunction",
-            "type": "shell",
-            "command": "sam build --use-container --cached",
-        },
-        {
-            "label": "3. Run Lambda local endpoint",
-            "type": "shell",
-            "command": [
-                "sam",
-                "local",
-                "start-lambda",
-                "--profile",
-                "sandbox-ajgreen",
-                "--debug-port",
-                // Must be the same as the port in the .vscode/launch.json debug configuration
-                "3488",
-                "--warm-containers",
-                "EAGER",
-                "--debug",
-                "--debug-function",
-                "HelloWorldFunction",
-            ],
-        },
-        {
-            "label": "4. Invoke Lambda local endpoint",
-            "type": "shell",
-            "command": [
-                "aws",
-                "lambda",
-                "invoke",
-                "--function-name",
-                "HelloWorldFunction",
-                "--endpoint-url",
-                "http://127.0.0.1:3001",
-                "--payload",
-                "file://hello_world/hem/test/demo_files/core/demo.json",
-                "--no-verify-ssl",
-                "--profile",
-                "sandbox-ajgreen",
-                "--no-cli-pager",
-                "--cli-binary-format",
-                "raw-in-base64-out",
-                "/dev/stdout"
-            ],
-        },
-        {
-            "label": "Invoke HelloWorldFunction directly",
-            "type": "shell",
-            "command": "sam local invoke HelloWorldFunction --event events/event.json --profile sandbox-ajgreen",
-        },
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Sandbox SSO login",
+      "type": "shell",
+      "command": "aws sso login --profile sandbox-ajgreen"
+    },
+    {
+      "label": "2. Build HEMFunction",
+      "type": "shell",
+      "command": "sam build --use-container --cached"
+    },
+    {
+      "label": "3. Run Lambda local endpoint",
+      "type": "shell",
+      "command": [
+        "sam",
+        "local",
+        "start-lambda",
+        "--profile",
+        "sandbox-ajgreen",
+        "--debug-port",
+        // Must be the same as the port in the .vscode/launch.json debug configuration
+        "3488",
+        "--warm-containers",
+        "EAGER",
+        "--debug",
+        "--debug-function",
+        "HEMFunction"
+      ]
+    },
+    {
+      "label": "4. Invoke Lambda local endpoint",
+      "type": "shell",
+      "command": [
+        "aws",
+        "lambda",
+        "invoke",
+        "--function-name",
+        "HEMFunction",
+        "--endpoint-url",
+        "http://127.0.0.1:3001",
+        "--payload",
+        "file://lambda_function/hem/test/demo_files/core/demo.json",
+        "--no-verify-ssl",
+        "--profile",
+        "sandbox-ajgreen",
+        "--no-cli-pager",
+        "--cli-binary-format",
+        "raw-in-base64-out",
+        "/dev/stdout"
+      ]
+    },
+    {
+      "label": "Invoke HEMFunction directly",
+      "type": "shell",
+      "command": "sam local invoke HEMFunction --event events/event.json --profile sandbox-ajgreen"
+    }
+  ]
 }

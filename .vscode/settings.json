@@ -1,5 +1,5 @@
 {
-  "python.analysis.extraPaths": ["hello_world/hem/src"],
-  "python.autoComplete.extraPaths": ["hello_world/hem/src"],
+  "python.analysis.extraPaths": ["lambda_function/hem/src"],
+  "python.autoComplete.extraPaths": ["lambda_function/hem/src"],
   "task.autoDetect": "off"
 }
