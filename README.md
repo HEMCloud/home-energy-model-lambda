@@ -9,11 +9,9 @@ I think we should use [serverless.tf modules for the lambda
 deployment](https://github.com/terraform-aws-modules/terraform-aws-lambda?tab=readme-ov-file#-deployment-package---create-or-use-existing).
 By default these build and deploy the lambda packages during the terraform apply step. This won't work with the
 terraform monorepo approach. Instead I should:
-- Create a build artifact S3 bucket in the MGT account.
-- Refactor the SAM template to have proper names and not include unecessary resources.
-- Refine the existing SAM build command task
-- Create a VSCode task that zips the build output.
-- Create a VSCode task that sends the zip to an S3 management bucket. 
+- Separate out HEM library into its own folder.
+- Write a layer for the `src` folder within HEM.
+- Write a layer that builds the requirements.txt
 - Use the link above section to create a lambda function without a `create_package` step, instead targeting an existing
   S3 package in the MGT account.
   - Will need cross account permissions similar to Baringa.
