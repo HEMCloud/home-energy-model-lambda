@@ -10,11 +10,8 @@ deployment](https://github.com/terraform-aws-modules/terraform-aws-lambda?tab=re
 By default these build and deploy the lambda packages during the terraform apply step. This won't work with the
 terraform monorepo approach. Instead I should:
 - Create a build artifact S3 bucket in the MGT account.
-- Convert the AWS SAM template to a terraform module
-  - This won't be used for deployment, only to hold configuration for running the `sam build` command.
-- Create a VSCode task that runs the `sam build` command using the `--hook-name terraform` option and output to `.aws-sam-terraform`.
-- Compare the terraform output with the SAM template build output in the original `.aws-sam/build`. Try using the new
-  one to run the local server.
+- Refactor the SAM template to have proper names and not include unecessary resources.
+- Refine the existing SAM build command task
 - Create a VSCode task that zips the build output.
 - Create a VSCode task that sends the zip to an S3 management bucket. 
 - Use the link above section to create a lambda function without a `create_package` step, instead targeting an existing
