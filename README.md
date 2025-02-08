@@ -3,6 +3,24 @@ Debug config based on:
 - https://medium.com/@Consegna/aws-sam-local-debugging-lambda-and-api-gateway-with-breakpoints-demo-d5fea4172376
 - https://github.com/microsoft/debugpy
 
+# Deployment notes
+
+I think we should use [serverless.tf modules for the lambda
+deployment](https://github.com/terraform-aws-modules/terraform-aws-lambda?tab=readme-ov-file#-deployment-package---create-or-use-existing).
+By default these build and deploy the lambda packages during the terraform apply step. This won't work with the
+terraform monorepo approach. Instead I should:
+- Create a build artifact S3 bucket in the MGT account.
+- Convert the AWS SAM template to a terraform module
+  - This won't be used for deployment, only to hold configuration for running the `sam build` command.
+- Create a VSCode task that runs the `sam build` command using the `--hook-name terraform` option and output to `.aws-sam-terraform`.
+- Compare the terraform output with the SAM template build output in the original `.aws-sam/build`. Try using the new
+  one to run the local server.
+- Create a VSCode task that zips the build output.
+- Create a VSCode task that sends the zip to an S3 management bucket. 
+- Use the link above section to create a lambda function without a `create_package` step, instead targeting an existing
+  S3 package in the MGT account.
+  - Will need cross account permissions similar to Baringa.
+
 
 
 
