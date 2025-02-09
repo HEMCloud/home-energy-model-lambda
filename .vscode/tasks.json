@@ -80,9 +80,16 @@
       ]
     },
     {
-      "label": "6. Upload HEMLambdaFunction to S3",
+      "label": "6. Upload HEMLambdaFunction image to ECR",
       "type": "shell",
-      "command": "sam package --s3-bucket hem-mgt-build-artifacts --s3-prefix hem-lambda-zips --profile sandbox-ajgreen"
+      "command": [
+        "sam",
+        "package",
+        "--image-repository",
+        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository",
+        "--profile",
+        "sandbox-ajgreen"
+      ]
     }
   ]
 }
