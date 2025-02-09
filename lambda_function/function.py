@@ -57,14 +57,12 @@ def lambda_handler(event, context):
     )
     logger.info(f"HEM subprocess return result: {result}")
 
-    # This logic is copied from the HEM module: src.hem.py, line 74 - 95
-    results_folder_path = os.path.join(temp_dir_path, input_file_name + "__results", "")
-    output_file_name_stub_path = results_folder_path + input_file_name + "__" + "core" + "__"
-    summary_csv_filepath = output_file_name_stub_path + "results_summary.csv"
-
-    result_data = csv_to_json(summary_csv_filepath)
-
     if result.returncode == 0:
+        # This logic is copied from the HEM module: src.hem.py, line 74 - 95
+        results_folder_path = os.path.join(temp_dir_path, input_file_name + "__results", "")
+        output_file_name_stub_path = results_folder_path + input_file_name + "__" + "core" + "__"
+        summary_csv_filepath = output_file_name_stub_path + "results_summary.csv"
+        result_data = csv_to_json(summary_csv_filepath)
         return {"statusCode": 200, "body": result_data, "headers": {"Content-Type": "application/json"}}
     else:
         return {"statusCode": 500, "error": result.stderr.decode("utf-8")}
