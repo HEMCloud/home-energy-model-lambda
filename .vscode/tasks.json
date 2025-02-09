@@ -54,13 +54,13 @@
         "/dev/stdout"
       ]
     },
+    // {
+    //   "label": "Invoke HEMLambdaFunction directly",
+    //   "type": "shell",
+    //   "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile sandbox-ajgreen"
+    // },
     {
-      "label": "Invoke HEMLambdaFunction directly",
-      "type": "shell",
-      "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile sandbox-ajgreen"
-    },
-    {
-      "label": "Upload HEMLambdaFunction to S3",
+      "label": "5. Upload HEMLambdaFunction to S3",
       "type": "shell",
       "command": "sam package --s3-bucket hem-mgt-build-artifacts --s3-prefix hem-lambda-zips --profile sandbox-ajgreen"
     }
