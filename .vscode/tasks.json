@@ -9,8 +9,8 @@
     {
       "label": "2. Build HEMLambdaFunction",
       "type": "shell",
-    // This might be needed if build dependencies (like Python) not installed on your machine
-    // "command": "sam build --use-container --cached"
+      // This might be needed if build dependencies (like Python) not installed on your machine
+      // "command": "sam build --use-container --cached"
       "command": "sam build --cached"
     },
     {
@@ -60,7 +60,27 @@
     //   "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile sandbox-ajgreen"
     // },
     {
-      "label": "5. Upload HEMLambdaFunction to S3",
+      "label": "5. Login to ECR",
+      "type": "shell",
+      "command": [
+        "aws",
+        "ecr",
+        "get-login-password",
+        "--region",
+        "eu-west-2",
+        "--profile",
+        "sandbox-ajgreen",
+        "|",
+        "docker",
+        "login",
+        "--username",
+        "AWS",
+        "--password-stdin",
+        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository"
+      ]
+    },
+    {
+      "label": "6. Upload HEMLambdaFunction to S3",
       "type": "shell",
       "command": "sam package --s3-bucket hem-mgt-build-artifacts --s3-prefix hem-lambda-zips --profile sandbox-ajgreen"
     }
