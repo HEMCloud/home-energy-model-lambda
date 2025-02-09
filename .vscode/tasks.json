@@ -11,7 +11,7 @@
       "type": "shell",
       // This might be needed if build dependencies (like Python) not installed on your machine
       // "command": "sam build --use-container --cached"
-      "command": "sam build --cached"
+      "command": "sam build"
     },
     {
       "label": "3. Run Lambda local endpoint",

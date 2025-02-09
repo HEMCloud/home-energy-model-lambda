@@ -1,3 +1,4 @@
+import logging
 import os
 import subprocess
 import json
@@ -15,6 +16,8 @@ import debugpy
 from convert_summary_csv_to_json import csv_to_json
 
 debugpy.listen(("0.0.0.0", 3488))
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
@@ -40,6 +43,7 @@ def lambda_handler(event, context):
     """
     env = os.environ.copy()
     env["PYTHONPATH"] = "/var/task"
+    logger.info(f"Running HEM with input file: {input_file_path}")
     result = subprocess.run(
         [
             "python",
@@ -52,6 +56,7 @@ def lambda_handler(event, context):
         capture_output=True,
         env=env,
     )
+    logger.info(f"HEM subprocess return result: {result}")
 
     # This logic is copied from the HEM module: src.hem.py, line 74 - 95
     results_folder_path = os.path.join(temp_dir_path, input_file_name + "__results", "")
