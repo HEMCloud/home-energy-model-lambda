@@ -32,6 +32,7 @@ def lambda_handler(event, context):
     same directory as the input file, which is read-only in AWS Lambda. /tmp is the only writable directory in AWS
     Lambda.
     """
+    logger.info(f"Received event: {event}")
     input_file_name = "demo"
     input_file_path = os.path.join(temp_dir_path, input_file_name + ".json")
     with open(input_file_path, "w") as f:
