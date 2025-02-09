@@ -49,7 +49,6 @@ def lambda_handler(event, context):
             "python",
             hem_main_script_path,
             input_file_path,
-            "--display-progress",
             "--epw-file",
             file_dir + "/GBR_ENG_Eastbourne.038830_TMYx.epw",
         ],
