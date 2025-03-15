@@ -2,9 +2,14 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "1. Sandbox SSO login",
+      "label": "1a. MGT SSO login for deployment",
       "type": "shell",
       "command": "aws sso login --profile sandbox-ajgreen"
+    },
+    {
+      "label": "1b. Dev SSO login for running in cloud",
+      "type": "shell",
+      "command": "aws sso login --profile hem-dev"
     },
     {
       "label": "2. Build HEMLambdaFunction",
@@ -92,7 +97,7 @@
       ]
     },
     {
-      "label": "7. Invoke Lambda cloud endpoint",
+      "label": "7. Invoke Lambda in dev",
       "type": "shell",
       "command": [
         "aws",
@@ -103,7 +108,7 @@
         "--payload",
         "file://lambda_function/hem/test/demo_files/core/demo.json",
         "--profile",
-        "sandbox-ajgreen",
+        "hem-dev",
         "--no-cli-pager",
         "--cli-binary-format",
         "raw-in-base64-out",
