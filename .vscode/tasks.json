@@ -4,12 +4,12 @@
     {
       "label": "1a. MGT SSO login for deployment",
       "type": "shell",
-      "command": "aws sso login --profile sandbox-ajgreen"
+      "command": "aws sso login --profile hem-mgt --no-browser"
     },
     {
       "label": "1b. Dev SSO login for running in cloud",
       "type": "shell",
-      "command": "aws sso login --profile hem-dev"
+      "command": "aws sso login --profile hem-dev --no-browser"
     },
     {
       "label": "2. Build HEMLambdaFunction",
@@ -26,7 +26,7 @@
         "local",
         "start-lambda",
         "--profile",
-        "sandbox-ajgreen",
+        "hem-mgt",
         "--debug-port",
         // Must be the same as the port in the .vscode/launch.json debug configuration
         "3488",
@@ -52,7 +52,7 @@
         "file://lambda_function/hem/test/demo_files/core/demo.json",
         "--no-verify-ssl",
         "--profile",
-        "sandbox-ajgreen",
+        "hem-mgt",
         "--no-cli-pager",
         "--cli-binary-format",
         "raw-in-base64-out",
@@ -62,10 +62,10 @@
     // {
     //   "label": "Invoke HEMLambdaFunction directly",
     //   "type": "shell",
-    //   "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile sandbox-ajgreen"
+    //   "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile hem-mgt"
     // },
     {
-      "label": "5. Login to ECR",
+      "label": "5. Login to MGT ECR",
       "type": "shell",
       "command": [
         "aws",
@@ -74,7 +74,7 @@
         "--region",
         "eu-west-2",
         "--profile",
-        "sandbox-ajgreen",
+        "hem-mgt",
         "|",
         "docker",
         "login",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "label": "6. Upload HEMLambdaFunction image to ECR",
+      "label": "6. Upload HEMLambdaFunction image to MGT ECR",
       "type": "shell",
       "command": [
         "sam",
@@ -93,7 +93,7 @@
         "--image-repository",
         "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository",
         "--profile",
-        "sandbox-ajgreen"
+        "hem-mgt"
       ]
     },
     {
