@@ -90,6 +90,25 @@
         "--profile",
         "sandbox-ajgreen"
       ]
+    },
+    {
+      "label": "7. Invoke Lambda cloud endpoint",
+      "type": "shell",
+      "command": [
+        "aws",
+        "lambda",
+        "invoke",
+        "--function-name",
+        "hem-lambda-function",
+        "--payload",
+        "file://lambda_function/hem/test/demo_files/core/demo.json",
+        "--profile",
+        "sandbox-ajgreen",
+        "--no-cli-pager",
+        "--cli-binary-format",
+        "raw-in-base64-out",
+        "/dev/stdout"
+      ]
     }
   ]
 }
