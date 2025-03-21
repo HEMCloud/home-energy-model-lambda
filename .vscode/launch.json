@@ -11,7 +11,7 @@
       },
       "pathMappings": [
         {
-          "localRoot": "${workspaceRoot}/lambda_function",
+          "localRoot": "${workspaceRoot}/hem_eval_function",
           "remoteRoot": "/var/task"
         }
       ],

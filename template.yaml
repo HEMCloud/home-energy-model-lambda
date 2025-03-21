@@ -12,5 +12,5 @@ Resources:
         - arm64
     Metadata:
       Dockerfile: Dockerfile
-      DockerContext: ./lambda_function
+      DockerContext: ./hem_eval_function
       DockerTag: python3.9-hem

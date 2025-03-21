@@ -1,3 +1,3 @@
-[submodule "lambda_function/hem"]
+[submodule "hem_eval_function/hem"]
 	path = hem_eval_function/hem
 	url = https://BreGroup@dev.azure.com/BreGroup/Home%20Energy%20Model/_git/Home%20Energy%20Model
