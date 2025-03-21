@@ -46,7 +46,7 @@ def lambda_handler(event, context):
                     # TODO: Add your business logic for INSERT events
 
                 elif event_name == "MODIFY":
-                    logger.info(f"Processing MODIFY event:")
+                    logger.info("Processing MODIFY event:")
                     logger.info(f"Old image: {json.dumps(old_image)}")
                     logger.info(f"New image: {json.dumps(new_image)}")
                     # TODO: Add your business logic for MODIFY events
