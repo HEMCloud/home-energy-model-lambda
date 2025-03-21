@@ -85,7 +85,7 @@
       ]
     },
     {
-      "label": "6. Upload HEMLambdaFunction image to MGT ECR",
+      "label": "6a. Upload HEMLambdaFunction image to MGT ECR",
       "type": "shell",
       "command": [
         "sam",
@@ -95,6 +95,11 @@
         "--profile",
         "hem-mgt"
       ]
+    },
+    {
+      "label": "6b. Upload DynamoStreamOrchestratorFunction zip to MGT S3",
+      "type": "shell",
+      "command": "sam package --s3-bucket hem-build-artifacts --s3-prefix dynamo-stream-orchestrator-lambda-zips --profile hem-mgt --template dynamo_stream_orchestrator.yaml"
     },
     {
       "label": "7. Invoke Lambda in dev",

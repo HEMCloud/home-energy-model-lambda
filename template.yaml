@@ -15,12 +15,4 @@ Resources:
       DockerContext: ./hem_eval_function
       DockerTag: python3.9-hem
 
-  DynamoStreamOrchestratorFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./dynamo_stream_orchestrator/
-      Handler: function.lambda_handler
-      Runtime: python3.13
-      PackageType: Zip
-      Architectures:
-        - arm64
+
