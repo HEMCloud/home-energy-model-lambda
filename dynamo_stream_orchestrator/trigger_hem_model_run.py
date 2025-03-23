@@ -1,7 +1,8 @@
 import boto3
 import json
 
-def trigger_hem_model_run(workflow_arn: string, input_state=None):
+
+def trigger_hem_model_run(workflow_arn: str, input_state: dict | None = None):
     """
     Triggers an AWS Step Function workflow.
 
@@ -13,14 +14,11 @@ def trigger_hem_model_run(workflow_arn: string, input_state=None):
         dict: The response from the Step Functions StartExecution API.
     """
     # Initialize the Step Functions client
-    stepfunctions_client = boto3.client('stepfunctions')
+    stepfunctions_client = boto3.client("stepfunctions")
 
     # Prepare the input data as a JSON string
-    input_json = json.dumps(input_state) if input_state else '{}'
+    input_json = json.dumps(input_state) if input_state else "{}"
 
     # Start the Step Function execution
-    response = stepfunctions_client.start_execution(
-        stateMachineArn=workflow_arn,
-        input=input_json
-    )
+    response = stepfunctions_client.start_execution(stateMachineArn=workflow_arn, input=input_json)
     return response
