@@ -69,7 +69,7 @@
     {
       "label": "4b. Invoke DynamoStreamOrchestratorFunction directly",
       "type": "shell",
-      "command": "sam local invoke DynamoStreamOrchestratorFunction --event dynamo_stream_orchestrator/test_stream_event.json --profile hem-mgt --template dynamo_stream_orchestrator.yaml"
+      "command": "sam local invoke DynamoStreamOrchestratorFunction --event dynamo_stream_orchestrator/test_stream_event.json --profile hem-dev --template dynamo_stream_orchestrator.yaml"
     },
     {
       "label": "5. Login to MGT ECR",

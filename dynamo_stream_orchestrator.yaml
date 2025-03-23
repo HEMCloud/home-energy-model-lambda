@@ -13,3 +13,7 @@ Resources:
       PackageType: Zip
       Architectures:
         - arm64
+      Environment:
+        Variables:
+          # Dev hem-model-runs-step-function
+          STATE_MACHINE_ARN: "arn:aws:states:eu-west-2:864981718509:stateMachine:hem-model-runs-step-function"
