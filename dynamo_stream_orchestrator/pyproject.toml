@@ -1,0 +1,18 @@
+[project]
+name = "dynamo_stream_orchestrator"
+version = "0.1.0"
+authors = [
+    {name = "Ashley Green", email = "technimakri@gmail.com"},
+]
+dependencies = [
+    "boto3>=1.37.18"
+]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+description = "Default template for PDM package"
+
+
+[tool.pdm]
+distribution = false
+
