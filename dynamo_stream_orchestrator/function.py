@@ -1,5 +1,8 @@
 import json
 import logging
+import os
+
+from dynamo_stream_orchestrator import trigger_hem_model_run
 
 # Configure logging
 logger = logging.getLogger()
@@ -20,6 +23,11 @@ def lambda_handler(event, context):
     try:
         logger.info("Received DynamoDB Stream event")
 
+        # Get the state machine ARN from environment variables
+        state_machine_arn = os.environ.get("STATE_MACHINE_ARN")
+        if not state_machine_arn:
+            raise ValueError("STATE_MACHINE_ARN environment variable is not set")
+
         # Track processing results
         processed_count = 0
         failed_count = 0
@@ -27,11 +35,6 @@ def lambda_handler(event, context):
         # Process each record in the event
         for record in event.get("Records", []):
             try:
-                # Make sure this is a DynamoDB record
-                if record.get("eventSource") != "aws:dynamodb":
-                    logger.warning(f"Skipping non-DynamoDB record: {record.get('eventSource')}")
-                    continue
-
                 # Get the DynamoDB data
                 dynamodb_data = record.get("dynamodb", {})
                 event_name = record.get("eventName")
@@ -43,18 +46,20 @@ def lambda_handler(event, context):
                 # Process based on the event type
                 if event_name == "INSERT":
                     logger.info(f"Processing INSERT event: {json.dumps(new_image)}")
-                    # TODO: Add your business logic for INSERT events
+                    uuid = new_image["uuid"]["S"]
+                    input_state = {"uuid": uuid}
+                    trigger_hem_model_run(
+                        state_machine_arn=state_machine_arn,
+                        input_state=input_state,
+                    )
 
                 elif event_name == "MODIFY":
-                    logger.info("Processing MODIFY event:")
+                    logger.info("Skipping MODIFY event:")
                     logger.info(f"Old image: {json.dumps(old_image)}")
                     logger.info(f"New image: {json.dumps(new_image)}")
-                    # TODO: Add your business logic for MODIFY events
-                    # You can compare old_image and new_image to detect specific changes
 
                 elif event_name == "REMOVE":
-                    logger.info(f"Processing REMOVE event: {json.dumps(old_image)}")
-                    # TODO: Add your business logic for REMOVE events
+                    logger.info(f"Skipping REMOVE event: {json.dumps(old_image)}")
 
                 processed_count += 1
 
