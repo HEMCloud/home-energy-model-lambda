@@ -2,7 +2,7 @@ import boto3
 import json
 
 
-def trigger_hem_model_run(state_machine_arn: str, input_state: dict | None = None):
+def trigger_step_function_workflow(state_machine_arn: str, input_state: dict | None = None):
     """
     Triggers an AWS Step Function workflow.
 

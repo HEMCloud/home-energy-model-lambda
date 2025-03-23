@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-from dynamo_stream_orchestrator import trigger_hem_model_run
+from step_function_trigger import trigger_step_function_workflow
 
 # Configure logging
 logger = logging.getLogger()
@@ -48,7 +48,7 @@ def lambda_handler(event, context):
                     logger.info(f"Processing INSERT event: {json.dumps(new_image)}")
                     uuid = new_image["uuid"]["S"]
                     input_state = {"uuid": uuid}
-                    trigger_hem_model_run(
+                    trigger_step_function_workflow(
                         state_machine_arn=state_machine_arn,
                         input_state=input_state,
                     )

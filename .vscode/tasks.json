@@ -12,11 +12,18 @@
       "command": "aws sso login --profile hem-dev --no-browser"
     },
     {
-      "label": "2. Build HEMLambdaFunction",
+      "label": "2a. Build HEMLambdaFunction",
       "type": "shell",
       // This might be needed if build dependencies (like Python) not installed on your machine
       // "command": "sam build --use-container --cached"
       "command": "sam build"
+    },
+    {
+      "label": "2b. Build DynamoStreamOrchestratorFunction",
+      "type": "shell",
+      // This might be needed if build dependencies (like Python) not installed on your machine
+      // "command": "sam build --use-container --cached"
+      "command": "sam build --template dynamo_stream_orchestrator.yaml"
     },
     {
       "label": "3. Run Lambda local endpoint",
@@ -38,7 +45,7 @@
       ]
     },
     {
-      "label": "4. Invoke Lambda local endpoint",
+      "label": "4a. Invoke Lambda local endpoint",
       "type": "shell",
       "command": [
         "aws",
@@ -59,11 +66,11 @@
         "/dev/stdout"
       ]
     },
-    // {
-    //   "label": "Invoke HEMLambdaFunction directly",
-    //   "type": "shell",
-    //   "command": "sam local invoke HEMLambdaFunction --event events/event.json --profile hem-mgt"
-    // },
+    {
+      "label": "4b. Invoke DynamoStreamOrchestratorFunction directly",
+      "type": "shell",
+      "command": "sam local invoke DynamoStreamOrchestratorFunction --event dynamo_stream_orchestrator/test_stream_event.json --profile hem-mgt --template dynamo_stream_orchestrator.yaml"
+    },
     {
       "label": "5. Login to MGT ECR",
       "type": "shell",
@@ -102,7 +109,7 @@
       "command": "sam package --s3-bucket hem-build-artifacts --s3-prefix dynamo-stream-orchestrator-lambda-zips --profile hem-mgt --template dynamo_stream_orchestrator.yaml"
     },
     {
-      "label": "7. Invoke Lambda in dev",
+      "label": "7. Invoke HEMLambdaFunction in dev",
       "type": "shell",
       "command": [
         "aws",
