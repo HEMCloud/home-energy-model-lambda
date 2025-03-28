@@ -88,7 +88,7 @@
         "--username",
         "AWS",
         "--password-stdin",
-        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository"
+        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository-commits"
       ]
     },
     {
@@ -98,7 +98,7 @@
         "sam",
         "package",
         "--image-repository",
-        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository",
+        "317467111462.dkr.ecr.eu-west-2.amazonaws.com/hem-lambda-image-repository-commits",
         "--profile",
         "hem-mgt"
       ]
